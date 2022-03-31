@@ -23,8 +23,13 @@ module.exports = class Student {
         });
     }
 
-    static fetchAllStudents() {
-        return students;
+    static fetchAllStudents(callback) {
+        fs.readFile(studentPath, (err, info) => {
+            if(!err) {
+                callback(JSON.parse(info)) 
+            }
+            else callback([]);
+        })
     }
 
 

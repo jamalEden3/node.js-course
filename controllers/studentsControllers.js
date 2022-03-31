@@ -5,7 +5,10 @@ const Students = require("../models/studentsModels");
 const getAllStudents = (req, res) => {
 
     res.set("Acceess-Control-Allow-Origin", "*");
-    res.render("students.ejs", {std: Students.fetchAllStudents()});
+    Students.fetchAllStudents((obj) => {
+        res.render("students.ejs",
+        {std: obj});        
+    })
 }
 
 // get specific student
